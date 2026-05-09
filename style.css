@@ -1,0 +1,1703 @@
+* {
+    box-sizing: border-box;
+}
+
+/* --- SUAVIZADO DEL MODO OSCURO --- */
+
+/* 1. Fondo general y texto base */
+body {
+    /* Se tardará medio segundo (0.5s) en cambiar los colores */
+    transition: background-color 1s ease, color 1s ease;
+}
+
+/* 2. Elementos específicos que tienen su propio fondo o bordes */
+.project-card, 
+.navbar, 
+header, 
+footer, 
+input, 
+textarea,
+button {
+    /* Añadimos border-color y box-shadow para que los bordes y sombras también cambien suave */
+    transition: background-color 1s ease, 
+                color 1s ease, 
+                border-color 1s ease, 
+                box-shadow 1s ease;
+}
+
+/* 3. Iconos (si cambian de color) */
+i, svg {
+    transition: color 1s ease, fill 1s ease;
+}
+
+html {
+    /* El tamaño estándar es 16px. 
+       Al poner 90%, bajamos a ~14.4px. 
+       Todo el texto y elementos definidos en 'rem' se ajustarán automáticamente. */
+    font-size: 90%; 
+    scroll-behavior: smooth; /* De paso, esto hace que el scroll sea suave */
+}
+
+:root {
+  --primary: #0f172a;
+  --accent: #0ea5e9;
+  --bg: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #475569;
+  --border: #e5e7eb;
+  --success-bg: #f0fdf4;
+  --success-text: #15803d;
+  --error-bg: #fef2f2;
+  --error-text: #b91c1c;
+  --loading-bg: #f0f9ff;
+  --loading-text: #0369a1;
+  --tag-gray: rgba(100, 116, 139, 0.1);
+}
+
+/* --- FOTO DE PERFIL: CÍRCULO COMPLETO (TARJETA + FOTO) --- */
+
+.profile-container {
+    /* Tamaño del circulo */
+    width: 325px;
+    height: 325px;
+    margin: 0 auto 30px auto;
+
+    border-radius: 50% !important;
+
+    padding: 12px;
+    box-sizing: border-box; /* Asegura que el padding no deforme el tamaño total */
+    background-color: var(--card-bg, #fff); /* Fondo blanco */
+    overflow: hidden; /* Recorta todo lo que se salga del círculo */
+
+    /* Centrar la imagen dentro del círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para la imagen dentro del círculo */
+.profile-container img {
+    width: 100%;
+    height: 100%;
+    /* 'cover' hace que la foto llene el espacio sin estirarse feo */
+    object-fit: cover;
+    /* Redondeamos la imagen también por seguridad */
+    border-radius: 50%;
+}
+
+/* --- ALINEACIÓN PERFECTA EN CONTACTO --- */
+
+/* 1. Hacemos que el contenedor del texto e icono use Flexbox */
+.card .item span {
+    display: flex;       
+    align-items: center; /* Esto alinea verticalmente el texto con el icono */
+}
+
+/* 2. Truco Maestro: Ancho fijo para los iconos */
+.card .item i {
+    width: 35px;        /* Obliga a todos los iconos a ocupar el mismo espacio */
+    text-align: center; /* Centra el dibujito dentro de ese espacio de 35px */
+    flex-shrink: 0;     /* Evita que el icono se aplaste si el texto es largo */
+    margin-right: 5px;  /* Un pequeño respiro extra antes del texto */
+    color: var(--accent);
+}
+
+p:not(.no-justify) {
+    text-align: justify;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body { 
+    /* Reduce todo el sitio al 87.5% */
+    zoom: 0.87; 
+    
+    /* Asegura que el scroll se comporte bien */
+    overflow-x: hidden;
+
+    font-family: "Inter", sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+    font-size: 1rem; /* Asegura que herede el nuevo tamaño base */
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+/* Header */
+.hero {
+  background-color: var(--primary);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+}
+
+
+/* Layout */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.cardfoto {
+  background: #626973;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.padding-lg {
+  padding: 32px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+h3 i {
+  color: var(--accent);
+}
+
+/* Sidebar Elements */
+.sidebar .item {
+  margin-bottom: 15px;
+}
+
+.bold {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.muted {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Tags */
+.tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* --- PALETA DE COLORES PARA TAGS --- */
+
+/* 1. ROJO (Errores, Java, Angular, Bugs) */
+.tag.red {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+/* 2. NARANJA (Advertencias, HTML5, Bases de Datos) */
+.tag.orange {
+    background: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fed7aa;
+}
+
+/* 3. AMARILLO / AMBER (JavaScript, Python, Precaución) */
+.tag.yellow {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+/* 5. TEAL / ESMERALDA (Seguridad, Clean Code, Tailwind) */
+.tag.teal {
+    background: #ccfbf1;
+    color: #115e59;
+    border: 1px solid #99f6e4;
+}
+
+/* 7. ÍNDIGO (PHP, C#, Visual Studio) */
+.tag.indigo {
+    background: #e0e7ff;
+    color: #3730a3;
+    border: 1px solid #c7d2fe;
+}
+
+/* 8. VIOLETA / PURPLE (Bootstrap, Heroku, Diseño) */
+.tag.purple {
+    background: #f3e8ff;
+    color: #6b21a8;
+    border: 1px solid #e9d5ff;
+}
+
+/* 9. ROSA (Sass, GraphQL, UI/UX) */
+.tag.pink {
+    background: #fce7f3;
+    color: #9d174d;
+    border: 1px solid #fbcfe8;
+}
+
+.tag.blue {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd; /* Borde azul suave */
+}
+
+.tag.green {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0; /* Borde verde suave */
+}
+
+.tag.sky {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd; /* Borde celeste suave */
+}
+
+.tag.gray {
+    background-color: var(--tag-gray); /* 10% de opacidad del gris */
+    color: #64748b; /* El color hexadecimal puro para el texto */
+    border: 1px solid rgba(100, 116, 139, 0.2); /* Opcional: un borde muy sutil */
+}
+
+/* Skills List */
+.skills-list {
+  list-style: none;
+}
+
+.skills-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+
+.skills-list li:hover {
+  background: #f0f9ff;
+}
+
+.skills-list i {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+}
+
+/* Button */
+
+.btn-primary,
+.btn-jugar {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #0284c7;
+  transform: translateY(-1px);
+}
+
+.btn-jugar:hover {
+  background: #02c70c;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active,
+.btn-jugar:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled,
+.btn-jugar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.buttons-wrapper {
+    display: flex;       /* Los pone en fila */
+    gap: 10px;           /* Espacio entre los dos botones */
+    margin-top: 20px;    /* Separación del texto de arriba */
+    flex-wrap: wrap;     /* Si la pantalla es muy pequeña, baja uno automáticamente */
+}
+
+/* Opcional: Si quieres que cada botón ocupe el 50% del espacio */
+
+.buttons-wrapper .btn-primary , .btn-jugar {
+    flex: 1;
+    text-align: center;
+}
+
+/* Status Box */
+
+.status-box {
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-box.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid #bbf7d0;
+}
+
+.status-box.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid #fecaca;
+}
+
+.status-box.loading {
+  background: var(--loading-bg);
+  color: var(--loading-text);
+  border: 1px solid #bae6fd;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* 1. Definición de colores para Modo Oscuro */
+body.dark-mode {
+  --primary: #0f172a;
+  /* Mantiene oscuro */
+  --bg: #111827;
+  /* Fondo muy oscuro */
+  --card-bg: #1f2937;
+  /* Tarjetas gris oscuro */
+  --text-main: #f3f4f6;
+  /* Texto claro */
+  --text-muted: #9ca3af;
+  /* Texto secundario gris claro */
+  --border: #374151;
+  /* Bordes oscuros */
+  --tag-gray: white;
+  /* Etiquetas grises */
+}
+
+/* Ajustes específicos para Dark Mode */
+body.dark-mode .skills-list li {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+body.dark-mode .skills-list li:hover {
+  background: #4b5563;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+  background: #374151;
+  color: white;
+  border-color: #4b5563;
+}
+
+/* 2. Botón de Tema */
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-btn:hover {
+  background: white;
+  color: var(--primary);
+  transform: rotate(15deg);
+}
+
+/* 3. Animaciones Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  /* Empieza 30px abajo */
+  transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+  /* Sube a su posición original */
+}
+
+/* --- CORRECCIÓN FINAL DE TÍTULOS EN MODO OSCURO --- */
+
+/* Cuando el cuerpo tenga la clase dark-mode... */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .section-title,
+body.dark-mode .bold {
+    /* ...forzamos a que los textos importantes usen el color claro/cian */
+    color: var(--text-main); 
+}
+
+/* Si prefieres que los títulos brillen en Azul Cian, usa esta línea en su lugar: */
+/* color: var(--accent); */
+
+body.dark-mode .subtitle {
+    color: var(--accent);
+}
+
+/* Aseguramos que los iconos también resalten */
+body.dark-mode h3 i,
+body.dark-mode .skills-list i {
+    color: var(--accent);
+}
+
+/* --- CORRECCIÓN DE BOTONES CENTRADOS --- */
+
+/* Contenedor flexible para los botones */
+.buttons-wrapper {
+    display: flex;
+    gap: 20px;               /* Espacio entre botones */
+    justify-content: center; /* Centrado horizontal perfecto */
+    align-items: center;
+    flex-wrap: wrap;         /* Para que se acomoden en celulares */
+    width: 100%;
+}
+
+/* Estilos base para AMBOS botones */
+.email-btn, 
+.btn-whatsapp,
+.btn-linkedin,
+.btn-calendly,
+.btn-github {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center; /* Centra el texto DENTRO del botón */
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: transform 0.2s, background 0.2s;
+    min-width: 180px;        /* Opcional: Para que midan lo mismo */
+    margin: 0;               /* IMPORTANTE: Quitamos márgenes automáticos */
+    color: white;
+}
+
+/* Color específico Email (Azul) */
+.email-btn {
+    background-color: var(--accent); /* Usa tu azul de siempre */
+}
+
+.email-btn:hover {
+    background-color: #0284c7;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Color específico WhatsApp (Verde) */
+.btn-whatsapp {
+    background-color: #25D366;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 2. Color LinkedIn (Azul Corporativo) */
+.btn-linkedin {
+    background-color: #0077b5;
+}
+
+.btn-linkedin:hover {
+    background-color: #005582;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 3. Color Calendly (Azul brillante) */
+.btn-calendly {
+    background-color: #006BFF;
+}
+
+.btn-calendly:hover {
+    background-color: #0050c2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 4. Color GitHub (Negro) */
+.btn-github {
+    background-color: #000000;
+}
+
+.btn-github:hover {
+    background-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Estilos para el botón de CV en el Header */
+.cv-header-btn {
+    position: absolute;
+    top: 20px;
+    right: 70px; /* 20px del borde + 40px del otro botón + 10px de espacio */
+    
+    /* Diseño visual */
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px; /* Forma de píldora */
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    /* Para centrar texto e icono */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px; /* Misma altura que el botón de tema */
+    box-sizing: border-box;
+}
+
+/* Efecto al pasar el mouse */
+.cv-header-btn:hover {
+    background: white;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Ajuste para móviles (opcional) */
+@media (max-width: 600px) {
+    .cv-header-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        right: 65px; 
+    }
+}
+
+/* Clase para párrafos con punto */
+.con-punto {
+    position: relative;
+    padding-left: 47px; /* Espacio para el punto */
+}
+
+.con-punto::before {
+    content: "•";      /* El carácter del punto */
+    color: var(--accent); /* Usa tu azul bonito */
+    font-size: 1.5rem; /* Tamaño del punto */
+    position: absolute;
+    left: 30px;
+    top: -8px; /* Ajuste fino de altura */
+}
+
+/* Estilo para enlaces dentro de las etiquetas */
+.tag a {
+    text-decoration: none; /* Quita la línea de abajo */
+    color: inherit;        /* Hereda el color exacto de la etiqueta padre */
+    cursor: pointer;       /* Asegura que aparezca la manito */
+}
+
+/* Opcional: Si quieres que cambie un poco al pasar el mouse */
+.tag a:hover {
+    opacity: 0.7;          /* Un pequeño efecto visual */
+}
+
+/* Imagen del proyecto */
+.project-img {
+    width: 100%;
+    /* 1. Igualamos la altura con tu mini-slider (estaba en 150px en tu otro código) */
+    height: 150px; 
+
+    /* 2. Para que el video se vea entero y no recortado */
+    object-fit: contain; 
+    
+    /* 3. El "padding" es lo que lo hace ver pequeño. 
+       NOTA: En tu código anterior tenías 200px (que es muchísimo). 
+       Te recomiendo 15px o 20px para que se vea elegante. */
+    padding: 20px; 
+    
+    /* 4. Importante para que el padding no rompa el tamaño */
+    box-sizing: border-box;
+
+    /* 5. Color de fondo para rellenar los huecos (igual que tus imágenes) */
+    background-color: var(--card-bg); 
+    
+    border-bottom: 1px solid var(--border);
+}
+
+.project-tags {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Botones Flechas */
+.carousel-btn {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.prev-btn { left: -20px; }
+.next-btn { right: -20px; }
+
+/* Botones pequeños para móviles */
+@media (max-width: 768px) {
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
+}
+
+/* --- INDICADORES DE PROYECTO (Estilo Píldora) --- */
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center; /* Centrados horizontalmente */
+    align-items: center;
+    gap: 10px; /* Espacio entre puntos */
+    margin-top: 20px; /* Separación de las tarjetas */
+    position: relative;
+    z-index: 10;
+}
+
+/* El punto inactivo (círculo pequeño) */
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: #cbd5e1; /* Gris suave */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    
+    /* La magia: Animación suave de ancho y color */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* El punto activo (Píldora estirada) */
+.dot.active {
+    width: 35px; /* Se estira a lo ancho */
+    background-color: var(--accent, #0ea5e9); /* Tu color azul */
+    border-radius: 100px; /* Bordes muy redondos */
+}
+
+/* Efecto Hover */
+.dot:hover:not(.active) {
+    background-color: #94a3b8; /* Gris un poco más oscuro al pasar el mouse */
+}
+
+/* Puntos de navegación */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: var(--accent);
+}
+
+/* Modo oscuro específico para el carrusel */
+body.dark-mode .carousel-btn {
+    background: #374151;
+    color: white;
+    border-color: #4b5563;
+}
+body.dark-mode .carousel-btn:hover {
+    background: var(--accent);
+}
+
+/* --- ESTILOS DEL CARRUSEL --- */
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ventana que recorta lo que no se ve */
+/* 1. EL VISOR (La máscara) */
+.carousel-slide-wrapper {
+    /* Permitimos scroll horizontal pero ocultamos la barra visualmente */
+    overflow-x: auto; 
+    overflow-y: hidden;
+    
+    /* ESTA ES LA MAGIA: Eje X, alineación obligatoria */
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth !important; /* Suavidad nativa */
+    
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 12px;
+    
+    /* Ocultar barra de scroll (Chrome/Safari/Opera) */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    /* Ocultar barra (Firefox/IE) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* 2. EL RIEL (Contenedor flexible) */
+.carousel-slides {
+    display: flex;
+    width: fit-content; /* Deja que crezca lo que necesite */
+    gap: 0;
+    transition: transform 0.75s ease-in-out;
+}
+
+/* 3. LA TARJETA (El objetivo del imán) */
+.project-card {
+    /* Importante: Alineación del imán */
+    scroll-snap-align: center; 
+    scroll-snap-stop: always; /* Obliga a parar en cada una */
+    
+    /* Tamaño: 100% del ancho del VISOR */
+    flex: 0 0 100%; 
+    width: 100%;
+    
+    /* Estética */
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative; /* Para que no se salga nada */
+}
+
+/* Texto del proyecto */
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.project-tags {
+    margin-top: 15px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Botones Flechas */
+.carousel-btn {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.prev-btn { left: -20px; }
+.next-btn { right: -20px; }
+
+/* Botones pequeños para móviles */
+@media (max-width: 768px) {
+    .prev-btn { left: -10px; }
+    .next-btn { right: -10px; }
+}
+
+/* Puntos de navegación */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background: var(--accent);
+}
+
+/* Modo oscuro específico para el carrusel */
+body.dark-mode .carousel-btn {
+    background: #374151;
+    color: white;
+    border-color: #4b5563;
+}
+body.dark-mode .carousel-btn:hover {
+    background: var(--accent);
+}
+
+/* Centrado Universal para tu contenedor */
+.container-proyecto {
+    display: flex;           /* Activa el modo flexible */
+    justify-content: center; /* Centra horizontalmente (izquierda-derecha) */
+    align-items: center;     /* Centra verticalmente (arriba-abajo) */
+    flex-direction: column;  /* Asegura que los elementos se apilen uno sobre otro */
+    max-width: 1200px;
+    margin: 0 auto;          /* Un refuerzo extra para centrar el bloque mismo */
+    text-align: center;      /* Centra los textos internos por si acaso */
+}
+
+/* --- ESTILOS UNIFICADOS CORREGIDOS --- */
+
+.mini-slider,
+video.project-img {
+    width: 100%;
+    height: 250px; /* Altura controlada (ni muy chica ni muy grande) */
+    
+    background-color: var(--card-bg); /* El fondo negro que te sirve de marco */
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+
+.slide-img,
+video.project-img {
+    width: 100%;
+    height: 100%;
+    
+    /* 1. IMPIDE QUE SE CORTE LA IMAGEN/VIDEO */
+    object-fit: contain; 
+    
+    /* 2. HACE QUE EL VIDEO SE VEA MÁS PEQUEÑO (Visualmente) */
+    /* El video flotará en medio del fondo negro. 
+       Sube a 40px si lo quieres aún más chico. */
+    padding: 0px; 
+    
+    box-sizing: border-box; /* Vital para que el padding no rompa la caja */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Reglas del slider (sin cambios) */
+.slide-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; 
+}
+
+.slide-img.active {
+    opacity: 1; 
+    z-index: 1;
+}
+
+video.project-img {
+    display: block;
+}
+
+.feedback-section {
+  border: 2px dashed var(--accent); /* Borde punteado para que parezca "en construcción/mejora" */
+  background: rgba(14, 165, 233, 0.03); /* Un fondo azul muy suave */
+}
+
+body.dark-mode .feedback-section {
+    background: rgba(14, 165, 233, 0.05);
+}
+
+/* --- GRID DE FEEDBACK (BOTONES MÁGICOS) --- */
+
+.feedback-grid {
+    /* CAMBIO: Usamos Flexbox en lugar de Grid */
+    display: flex;
+    flex-wrap: wrap; /* Permite que bajen a la siguiente línea */
+    justify-content: center; /* ¡ESTA ES LA CLAVE! Centra todo horizontalmente */
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.feedback-item {
+    /* Ajustamos el tamaño para que se comporten bien en Flexbox */
+    flex: 0 1 300px; /* No crecen (0), sí se encogen (1), base de 220px */
+    
+    /* Mantiene tus estilos visuales anteriores... */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Iconos grandes */
+.feedback-item i {
+    font-size: 2rem;
+    color: var(--accent); /* Tu azul favorito */
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+/* Título del botón */
+.feedback-item span {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Texto pequeño explicativo */
+.feedback-item small {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* --- EFECTOS HOVER (AL PASAR EL MOUSE) --- */
+.feedback-item:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px); /* Se levanta un poco */
+    box-shadow: 0 5px 15px rgba(14, 165, 233, 0.15);
+    background: #f0f9ff; /* Fondo azul muy clarito */
+}
+
+.feedback-item:hover i {
+    transform: scale(1.1); /* El icono crece */
+    color: #25D366;
+    
+}
+
+/* Ajuste para Modo Oscuro */
+body.dark-mode .feedback-item {
+    background: var(--card-bg);
+    border-color: var(--border);
+}
+body.dark-mode .feedback-item:hover {
+    background: #1e293b; /* Un gris un poco más claro que el fondo */
+    border-color: var(--accent);
+}
+
+.contacto {
+    width: 80%;
+    
+    /* --- LA LÍNEA MÁGICA --- */
+    margin: 0 auto; 
+    /* "0" arriba/abajo, "auto" a los lados (esto lo centra) */
+    
+    /* Opcional: Si quieres separarlo un poco de lo de arriba */
+    margin-top: 40px; 
+    margin-bottom: 40px;
+    
+    /* Tip Pro: Evita que se vea gigante en pantallas ultra anchas */
+    max-width: 1200px; 
+    display: block; /* Asegura que se comporte como bloque */
+
+}
+
+/* --- ESTILOS DE BARRAS DE PROGRESO (SKILLS) --- */
+
+.skill-item {
+    margin-bottom: 18px; /* Espacio entre cada habilidad */
+}
+
+.skill-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: var(--text-main);
+}
+
+.skill-percent {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* El fondo gris (el riel de la barra) */
+.progress-track {
+    width: 100%;
+    height: 12px; /* Grosor de la barra */
+    background-color: #e0e0e0; /* Gris claro de fondo */
+    border-radius: 20px; /* Bordes redondos (pill shape) */
+    overflow: hidden; /* Para que el relleno no se salga de las curvas */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Un toque de profundidad */
+}
+
+/* --- CLASE BASE (Estructura y Animación) --- */
+.progress-fill {
+    height: 100%;
+    border-radius: 20px;
+    width: 0; /* Empieza en 0 para la animación */
+    transition: width 1.5s ease-in-out;
+    /* Sombra sutil para darle relieve */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.2); 
+}
+
+/* --- 1. JAVA (Naranja a Rojo Oficial) --- */
+.progress-fill-java {
+    /* Degradado de Naranja claro a Rojo Java intenso */
+    background: linear-gradient(90deg, 
+        #fcae6d 0%,   /* Naranja pastel */
+        #f89820 25%,  /* Naranja Java */
+        #f05e16 50%,  /* Transición */
+        #e3360f 75%,  /* Rojo anaranjado */
+        #d1180b 100%  /* Rojo oscuro */
+    );
+    box-shadow: 0 0 10px rgba(248, 152, 32, 0.4); /* Glow Naranja */
+}
+
+/* --- 2. HTML5 & CSS3 (Naranja HTML a Azul CSS) --- */
+/* Esta es especial: Mezcla las dos tecnologías */
+.progress-fill-html {
+    background: linear-gradient(90deg, 
+        #e44d26 0%,   /* Naranja HTML5 */
+        #f16529 25%,  /* Naranja más claro */
+        #a67c52 50%,  /* Punto medio neutro */
+        #33a9dc 75%,  /* Azul claro CSS */
+        #1572b6 100%  /* Azul CSS3 oficial */
+    );
+    box-shadow: 0 0 10px rgba(228, 77, 38, 0.4);
+}
+
+/* --- 3. PHP (Escala de Púrpuras/Elefante) --- */
+.progress-fill-php {
+    background: linear-gradient(90deg, 
+        #aebcb8 0%,   /* Gris azulado claro */
+        #8c9eb5 25%,  /* Azul PHP claro */
+        #777bb4 50%,  /* Púrpura PHP base */
+        #6367a5 75%,  /* Púrpura oscuro */
+        #4f5b93 100%  /* Azul oscuro profundo */
+    );
+    box-shadow: 0 0 10px rgba(119, 123, 180, 0.4);
+}
+
+/* --- 4. PYTHON (Azul a Amarillo Oficial) --- */
+.progress-fill-python {
+    background: linear-gradient(90deg, 
+        #387eb8 0%,   /* Azul Python */
+        #4b8bbe 25%,  /* Azul suave */
+        #64a2d3 50%,  /* Azul hielo */
+        #ffe873 75%,  /* Amarillo Python claro */
+        #ffd43b 100%  /* Amarillo Python fuerte */
+    );
+    box-shadow: 0 0 10px rgba(56, 126, 184, 0.4);
+}
+
+/* --- 5. JAVASCRIPT (Amarillo Eléctrico) --- */
+.progress-fill-js {
+    background: linear-gradient(90deg, 
+        #fff5a3 0%,   /* Amarillo pálido */
+        #faeb5a 25%,  /* Amarillo limón */
+        #f7df1e 50%,  /* Amarillo JS Oficial */
+        #dcb315 75%,  /* Oro */
+        #b8930c 100%  /* Ocre oscuro (para contraste) */
+    );
+    /* Texto en negro o sombra oscura recomendada para JS */
+    box-shadow: 0 0 10px rgba(247, 223, 30, 0.4);
+}
+
+/* --- 6. INTELIGENCIA ARTIFICIAL (Cian a Violeta Futurista) --- */
+.progress-fill-ai {
+    background: linear-gradient(90deg, 
+        #22d3ee 0%,   /* Cian Neón */
+        #3b82f6 25%,  /* Azul Real */
+        #6366f1 50%,  /* Índigo */
+        #8b5cf6 75%,  /* Violeta */
+        #d946ef 100%  /* Fucsia */
+    );
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+}
+
+/* Ajuste para Modo Oscuro (si lo usas) */
+body.dark-mode .progress-track {
+    background-color: #334155;
+}
+
+/* --- EFECTO DE ELEVACIÓN 3D (HOVER) --- */
+
+/* 1. Estado Base: Preparamos la animación */
+.project-card, 
+.feedback-item, 
+.tool-item,
+.card .item { /* Esto es para los items de contacto (teléfono, mail) */
+    /* "all" anima cualquier cambio, 0.3s es la velocidad estándar suave */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Aseguramos que tengan una sombra base pequeña o nula */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}
+
+/* 2. Estado Hover: Cuando el mouse pasa por encima */
+.project-card:hover, 
+.feedback-item:hover,
+.tool-item:hover,
+.card .item:hover {
+    /* Mueve la tarjeta 10 píxeles hacia arriba */
+    transform: translateY(-10px); 
+    
+    /* La sombra crece hacia abajo y se vuelve más borrosa (efecto 3D) */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    
+    /* Opcional: Un borde sutil de color para resaltar más (Tu azul) */
+    /* border-color: var(--accent); */
+    
+    /* Cambia el cursor para indicar clic */
+    cursor: pointer;
+}
+
+/* --- EFECTO LEVITACIÓN PARA LAS TARJETAS PRINCIPALES --- */
+
+.card,
+.cardfoto {
+    /* 1. Suavizamos el movimiento */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Aseguramos que tenga una sombra base inicial (si no la tenía ya) */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.card:hover,
+.cardfoto:hover {
+    /* 2. Se eleva 5 píxeles (sutil y elegante) */
+    transform: translateY(-5px);
+    
+    /* 3. La sombra crece y se difumina hacia abajo */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    
+    /* Opcional: Si quieres que el borde brille un poquito en tu azul */
+    /* border: 1px solid rgba(59, 130, 246, 0.3); */
+}
+
+/* --- BARRA SUPERIOR FIJA (STICKY HEADER) --- */
+
+.sticky-navbar {
+    position: sticky; /* La magia: se pega al llegar arriba */
+    top: 0;           /* Se queda en el pixel 0 (techo) */
+    z-index: 1000;    /* Se asegura de estar ENCIMA de todo lo demás */
+    
+    /* Efecto Vidrio (Glassmorphism) */
+    background-color: rgba(255, 255, 255, 0.85); /* Blanco al 85% */
+    backdrop-filter: blur(10px); /* Desenfoca lo que pasa por detrás */
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Línea sutil abajo */
+    
+    padding: 13px 0;
+    width: 100%;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between; /* Empuja los elementos a los extremos opuestos */
+    align-items: center;
+    
+    /* CAMBIO CLAVE 1: Ancho total */
+    width: 100%;       /* Ocupa toda la pantalla */
+    max-width: none;   /* Elimina la "caja invisible" del medio */
+    
+    /* CAMBIO CLAVE 2: Márgenes de seguridad */
+    padding: 0 20px;   /* Deja un poco de aire a los lados para que no se pegue feo */
+    margin: 0;         /* Quita el auto-centrado */
+}
+
+/* Estilo de tu Nombre */
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main, #333);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+/* Enlaces del menú */
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: var(--text-muted, #666);
+    font-weight: 500;
+    transition: color 0.3s;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--accent, #3b82f6); /* Tu color azul al pasar el mouse */
+}
+
+/* Botón de Contacto en el menú (Opcional) */
+.btn-nav {
+    background-color: var(--accent, #3b82f6);
+    color: white !important;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: transform 0.2s;
+}
+
+.btn-nav:hover {
+    transform: scale(1.05);
+}
+
+/* MODO OSCURO (Si lo usas) */
+body.dark-mode .sticky-navbar {
+    background-color: rgba(30, 41, 59, 0.85); /* Fondo oscuro transparente */
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* --- BOTÓN DESPLEGABLE MEJORADO --- */
+
+/* 1. Alineación a la derecha */
+.nav-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* 2. Diseño "Premium" del Botón */
+.btn-dropdown {
+    /* Fondo con degradado para que se vea más moderno */
+    background: linear-gradient(135deg, var(--accent, #3b82f6) 0%, #1d4ed8 100%);
+    color: white;
+    
+    /* Espaciado y forma */
+    padding: 12px 40px 12px 25px; /* Más espacio para la flecha */
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil brillante */
+    
+    /* Tipografía */
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    
+    /* Sombra suave (Glow) */
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    
+    /* Limpieza técnica */
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.btn-dropdown:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); /* Sombra más fuerte */
+    filter: brightness(1.1); /* Brilla un poco más */
+}
+
+/* La flechita */
+.dropdown-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Animación de la flecha al hacer hover en el botón */
+.nav-dropdown-wrapper:hover .dropdown-icon {
+    transform: translateY(-50%) rotate(180deg); /* Gira la flecha */
+}
+
+/* 3. DISEÑO DEL MENÚ DESPLEGABLE (Opciones) */
+/* Nota: Los navegadores limitan mucho el estilo de las <option>, 
+   pero podemos cambiar colores y fondo */
+.btn-dropdown option {
+    background-color: #1e293b; /* Fondo oscuro (tipo Dark Mode) */
+    color: white;              /* Texto blanco */
+    padding: 10px;             /* Espacio interno (funciona en algunos navegadores) */
+    font-size: 1rem;
+}
+
+/* Estilo para los Títulos de los Grupos (Aliados / Colaboradores) */
+.btn-dropdown optgroup {
+    font-style: normal;
+    font-weight: 800;       /* Título bien negrita */
+    color: #94a3b8;         /* Color gris para el título (distinto al blanco de los nombres) */
+    background-color: #1e293b; /* Fondo oscuro */
+    margin: 5px 0;          /* Separa un poco los grupos */
+}
+
+/* Estilo para las opciones normales (Los nombres) */
+.btn-dropdown option {
+    color: white;           /* Nombres en blanco */
+    padding-left: 10px;     /* Un poco de sangría */
+    font-weight: normal;
+}
+
+/* --- DISEÑO DE CONTACTO DIVIDIDO --- */
+
+.contact-split-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Izquierda normal, Derecha un poco más ancha */
+    gap: 40px; /* Espacio entre las dos columnas */
+    align-items: start; /* Alineados arriba */
+    padding: 20px 0;
+}
+
+/* Columna de Botones (Izquierda) */
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hacemos que los botones sean bloques completos para que se vean ordenados */
+.buttons-wrapper-vertical {
+    display: flex;
+    flex-direction: column; /* Uno debajo del otro */
+    gap: 15px; /* Espacio entre botones */
+}
+
+/* Estilo unificado para los botones de contacto */
+.btn-contact {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Texto centrado */
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    transition: transform 0.2s, opacity 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    height: 62px;
+}
+
+.btn-contact i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.btn-contact:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* COLORES ESPECÍFICOS (Recuperados de tu código anterior) */
+.email-btn { background-color: #ea4335; }
+.btn-whatsapp { background-color: #25D366; }
+.btn-linkedin { background-color: #0077b5; }
+.btn-calendly { background-color: #3b82f6; } /* Azul */
+.btn-github { background-color: #333; }
+
+/* Columna del Formulario (Derecha) */
+.contact-right {
+    background-color: rgba(255, 255, 255, 0.03); /* Un fondo sutil para diferenciar */
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* --- DISEÑO DE APTITUDES DIVIDIDO --- */
+
+.aptitudes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas del mismo tamaño */
+    gap: 30px; /* Espacio entre la izquierda y la derecha */
+    align-items: start; /* Que empiecen alineados desde arriba */
+}
+
+/* Estilo para los subtítulos (Opcional, para que resalten) */
+.skill-category {
+    color: var(--accent); /* Tu color azul */
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+/* --- RESPONSIVE (CELULARES) --- */
+/* Cuando la pantalla sea pequeña, vuelve a una sola columna */
+@media (max-width: 768px) {
+    .aptitudes-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. VISOR: Forzamos una altura MÍNIMA grande */
+    .carousel-slide-wrapper {
+        width: 100% !important;
+        margin: 0 !important;
+        /* AQUÍ ESTÁ EL TRUCO: */
+        /* Dale suficiente altura para que quepa la imagen + texto largo */
+        min-height: 650px !important; 
+        height: auto !important;
+        
+        /* Aseguramos scroll horizontal */
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+    }
+
+    /* 2. TARJETA: Que ocupe toda esa altura */
+    .project-card {
+        min-height: 650px !important; /* Misma altura que el visor */
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Todo empieza desde arriba */
+    }
+
+    /* 3. IMAGEN: Controlamos que no sea gigante */
+    .mini-slider {
+        height: 200px !important; /* Altura fija para la imagen */
+        flex-shrink: 0;
+    }
+
+    /* 4. TEXTO: Que tenga espacio */
+    .project-info {
+        padding-bottom: 60px !important; /* Espacio extra abajo para que no toque el borde */
+    }
+
+    /* 5. BOTONES DE FLECHA (Flotantes) */
+    .carousel-container {
+        position: relative;
+        display: block !important;
+    }
+    .carousel-btn {
+        position: absolute !important;
+        top: 100px; /* Alineados con la imagen (aprox mitad de 200px) */
+        z-index: 20;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        width: 35px; height: 35px;
+        border-radius: 50%;
+        border: none;
+    }
+    .prev-btn { left: 10px !important; }
+    .next-btn { right: 10px !important; }
+    
+    /* 6. PUNTOS (Dots) */
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        z-index: 20;
+    }
+}
