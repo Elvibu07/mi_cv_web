@@ -59,9 +59,10 @@ html {
 
 .profile-container {
     /* Tamaño del circulo */
-    width: 325px;
-    height: 325px;
-    margin: 0 auto 30px auto;
+    width: 288px;
+    height: 280px;
+    margin: 20px auto;
+    aspect-ratio: 1 / 1;
 
     border-radius: 50% !important;
 
@@ -128,8 +129,10 @@ body {
 }
 
 .container {
+  width: 90%;  
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 
 }
 
@@ -184,9 +187,17 @@ body {
   margin-bottom: 60px;
 }
 
-@media (max-width: 768px) {
-  .main-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  .hero h1{
+    font-size: 1.8rem;
+  }
+  .subtitle {
+     font-size : 1 rem;
+  }
+  .main-layout{
+    display: flex;
+    flex-direction: column;
+    gap : 20px;
   }
 }
 
