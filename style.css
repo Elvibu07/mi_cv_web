@@ -456,6 +456,23 @@ h3 i {
     background 0.2s;
 }
 
+/* Nuevo contenedor para que los botones no ocupen todo el ancho */
+.project-buttons-container {
+    display: flex  !important;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+/* Nueva clase para ajustar el tamaño individualmente */
+.btn-small-fit {
+    width: fit-content!important;
+    flex: none !important;
+    padding: 10px 30px !important;
+}
+
+
+
 .btn-primary:hover {
   background: #0284c7;
   transform: translateY(-1px);
