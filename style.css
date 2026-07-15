@@ -978,7 +978,7 @@ body.dark-mode .carousel-btn:hover {
 /* 2. EL RIEL (Contenedor flexible) */
 .carousel-slides {
     display: flex;
-    width: fit-content; /* Deja que crezca lo que necesite */
+    width: 100%; /* Coincide exactamente con el visor, evita que las tarjetas se desborden */
     gap: 0;
     transition: transform 0.75s ease-in-out;
 }
